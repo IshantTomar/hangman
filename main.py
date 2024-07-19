@@ -1,7 +1,6 @@
 import random
 from customtkinter import *
 from words import words
-
 app = CTk()
 app.title("Hangman")
 
