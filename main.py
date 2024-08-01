@@ -2,7 +2,6 @@ import random
 from customtkinter import *
 from PIL import Image
 from words import words
-from hangmandesign import *
 
 app = CTk()
 app.title("Hangman")
@@ -56,6 +55,7 @@ def image_update():
     a = wrong_guess
     b = a - 6
     chances = "You have " + str(abs(b)) + " chances left"
+    word_text = "The word was " + word + "."
     if wrong_guess == 1:
         image_label.configure(image=image1)
         chance_label.configure(text=chances)
@@ -74,6 +74,15 @@ def image_update():
     elif wrong_guess == 6:
         image_label.configure(image=image6)
         chance_label.configure(text=chances)
+        guessedlabel.configure(text=word_text, text_color="Red")
+
+image0 = CTkImage(light_image=Image.open('stickman/0.png'), size=(188,256))
+image1 = CTkImage(light_image=Image.open('stickman/1.png'), size=(188,256))
+image2 = CTkImage(light_image=Image.open('stickman/2.png'), size=(188,256))
+image3 = CTkImage(light_image=Image.open('stickman/3.png'), size=(188,256))
+image4 = CTkImage(light_image=Image.open('stickman/4.png'), size=(188,256))
+image5 = CTkImage(light_image=Image.open('stickman/5.png'), size=(188,256))
+image6 = CTkImage(light_image=Image.open('stickman/6.png'), size=(188,256))
 
 def check_input():
     user_input = guess_en_var.get()
@@ -85,26 +94,34 @@ def check_input():
         guess_en.delete(0)
     app.after(500, check_input)
 
+def reset_game():
+    pass
+
+border_frame = CTkFrame(app, border_width=2, border_color="white")
+border_frame.grid(row=0, columnspan=2, pady=20)
+
+hintlabel = CTkLabel(border_frame, text="Hint", font=("Arial", 50))
+hintlabel.pack(padx=10, pady=10)
 wordlabel = CTkLabel(app, text="_ " * len(word), font=("Arial", 50))
-wordlabel.grid(row=0, columnspan=2)
+wordlabel.grid(row=1, columnspan=2)
 guessedlabel = CTkLabel(app, text="", font=("Arial", 20))
-guessedlabel.grid(row=1, columnspan=2)
+guessedlabel.grid(row=2, columnspan=2, pady=5)
 guesslabel = CTkLabel(app, text="Guess: ", font=("Arial", 30))
-guesslabel.grid(row=3, column=0)
+guesslabel.grid(row=4, column=0, padx=2)
 guess_en = CTkEntry(app, textvariable=guess_en_var, width=40, font=("Arial", 20))
-guess_en.grid(row=3, column=1, pady=10, sticky="w")
+guess_en.grid(row=4, column=1, pady=10, sticky="w")
 app.bind("<Return>", lambda event: game())
-alreadylabel = CTkLabel(app, text="", font=("Arial", 20))
-alreadylabel.grid(row=2, column=3, sticky="w")
+alreadylabel = CTkLabel(app, text="", font=("Arial", 2))
+alreadylabel.grid(row=3, column=3, sticky="w")
 guess_en_check = CTkLabel(app, text="", justify=LEFT)
-guess_en_check.grid(row=4, column=1)
+guess_en_check.grid(row=5, column=1)
 guessbutton = CTkButton(app, text="Guess", font=("Arial", 15), width=40, command=game)
-guessbutton.grid(row=5, columnspan=2, pady=5)
+guessbutton.grid(row=6, columnspan=2, pady=5)
 chance_label = CTkLabel(app, text="", font=("Arial", 15), text_color="red")
-chance_label.grid(row=6, columnspan=2)
+chance_label.grid(row=7, columnspan=2)
 image_label = CTkLabel(app, text="", image=image0)
-image_label.grid(row=7, columnspan=2, pady=10)
+image_label.grid(row=8, columnspan=2, pady=10)
 resetbutton = CTkButton(app, text="Reset", font=("Arial", 15), width=40)
-resetbutton.grid(row=8, columnspan=2)
+resetbutton.grid(row=9, columnspan=2)
 check_input()
 app.mainloop()
