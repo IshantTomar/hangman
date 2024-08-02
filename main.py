@@ -65,6 +65,9 @@ def game():
         guessedlabel.configure(text="You guessed it!", text_color="lightblue")
         guess_en_check.configure(text="")
         chance_label.configure(text="Well done!", text_color="lightblue")
+        guess_en.configure(state="disabled")
+        guessbutton.configure(state="disabled")
+
 
 def image_update():
     a = wrong_guess
@@ -90,6 +93,8 @@ def image_update():
         image_label.configure(image=image6)
         chance_label.configure(text="Game Over.", text_color="red")
         guessedlabel.configure(text=word_text, text_color="white")
+        guess_en.configure(state="disabled")
+        guessbutton.configure(state="disabled")
 
 image0 = CTkImage(light_image=Image.open('stickman/0.png'), size=(188,256))
 image1 = CTkImage(light_image=Image.open('stickman/1.png'), size=(188,256))
@@ -125,6 +130,8 @@ def reset_game():
     guessedlabel.configure(text="", text_color="white")
     guess_en_var.set("")
     guess_en_check.configure(text="")
+    guess_en.configure(state="normal")
+    guessbutton.configure(state="normal")
 
 # Create a frame to hold the hint label and center it
 border_frame = CTkFrame(app, border_width=2, border_color="white")
