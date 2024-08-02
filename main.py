@@ -19,6 +19,8 @@ app = CTk()
 app.title("Hangman")
 set_appearance_mode("dark")
 center_window(app, 300, 680)
+# Need Icon
+
 hint = random.choice(category)
 hint_name = variable_name(hint)
 word = random.choice(hint).upper()
