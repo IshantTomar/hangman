@@ -2,6 +2,17 @@ import random
 from customtkinter import *
 from PIL import Image
 from words import *
+import os
+import sys
+
+def resource_path(relative_path):
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 def center_window(window, width, height):
     # Get the screen width and height
@@ -19,7 +30,8 @@ app = CTk()
 app.title("Hangman")
 set_appearance_mode("dark")
 center_window(app, 480, 680)
-app.iconbitmap("icon.ico")
+icon_path = resource_path("icon.ico")
+app.iconbitmap(icon_path)
 
 hint = random.choice(category)
 hint_name = variable_name(hint)
@@ -96,13 +108,13 @@ def image_update():
         guess_en.configure(state="disabled")
         guessbutton.configure(state="disabled")
 
-image0 = CTkImage(light_image=Image.open('stickman/0.png'), size=(188,256))
-image1 = CTkImage(light_image=Image.open('stickman/1.png'), size=(188,256))
-image2 = CTkImage(light_image=Image.open('stickman/2.png'), size=(188,256))
-image3 = CTkImage(light_image=Image.open('stickman/3.png'), size=(188,256))
-image4 = CTkImage(light_image=Image.open('stickman/4.png'), size=(188,256))
-image5 = CTkImage(light_image=Image.open('stickman/5.png'), size=(188,256))
-image6 = CTkImage(light_image=Image.open('stickman/6.png'), size=(188,256))
+image0 = CTkImage(light_image=Image.open(resource_path('stickman/0.png')), size=(188,256))
+image1 = CTkImage(light_image=Image.open(resource_path('stickman/1.png')), size=(188,256))
+image2 = CTkImage(light_image=Image.open(resource_path('stickman/2.png')), size=(188,256))
+image3 = CTkImage(light_image=Image.open(resource_path('stickman/3.png')), size=(188,256))
+image4 = CTkImage(light_image=Image.open(resource_path('stickman/4.png')), size=(188,256))
+image5 = CTkImage(light_image=Image.open(resource_path('stickman/5.png')), size=(188,256))
+image6 = CTkImage(light_image=Image.open(resource_path('stickman/6.png')), size=(188,256))
 
 def check_input():
     user_input = guess_en_var.get()
