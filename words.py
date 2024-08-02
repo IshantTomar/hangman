@@ -7,7 +7,7 @@ Vegetable = ["Carrot", "Potato", "Lettuce", "Tomato", "Onion", "Peas", "Corn", "
 Vehicle = ["Car", "Bike", "Bus", "Truck", "Boat", "Plane", "Train", "Scooter", "Van", "Motorcycle"]
 
 category = [Animal, Color, Country, Fruit, Sport, Vegetable, Vehicle]
-
+#
 
 def variable_name(var):
     for name, value in globals().items():
