@@ -18,8 +18,8 @@ def center_window(window, width, height):
 app = CTk()
 app.title("Hangman")
 set_appearance_mode("dark")
-center_window(app, 300, 680)
-# Need Icon to make window icon.
+center_window(app, 480, 680)
+app.iconbitmap("icon.ico")
 
 hint = random.choice(category)
 hint_name = variable_name(hint)
